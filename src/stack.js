@@ -12,20 +12,50 @@ const { NotImplementedError } = require('../lib/errors');
  * stack.pop(); // undefined
  *
  */
+
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
 class Stack {
-  push(/* value */) {
+  constructor() {
+    this.head = null;
+    this.length = 0;
+  }
+  push(value) {
     // Remove line below and write your code here
-    throw new NotImplementedError('Not implemented');
+    //throw new NotImplementedError('Not implemented');
+    const node = new Node(value);
+
+    if (this.head) {
+      node.next = this.head;
+      this.head = node;
+    } else this.head = node;
+
+    this.length++;
   }
 
   pop() {
     // Remove line below and write your code here
-    throw new NotImplementedError('Not implemented');
+    //throw new NotImplementedError('Not implemented');
+
+    if (!this.length) return undefined;
+    const current = this.head;
+    this.head = this.head.next;
+    this.length--;
+
+    return current.value;
   }
 
   peek() {
     // Remove line below and write your code here
-    throw new NotImplementedError('Not implemented');
+    //throw new NotImplementedError('Not implemented');
+
+    if (!this.length) return undefined;
+    return this.head.value;
   }
 }
 
